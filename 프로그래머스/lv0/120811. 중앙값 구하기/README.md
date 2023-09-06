@@ -65,3 +65,8 @@ Empty
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+
+<hr>
+
+### 느낀점
+다른 사람 풀이를 보니까 Arrays.sort() 이라는 메서드를 사용해서 쉽게 오름차순 정렬을 했다. 다음부터는 이걸 써 봐야겠다.
