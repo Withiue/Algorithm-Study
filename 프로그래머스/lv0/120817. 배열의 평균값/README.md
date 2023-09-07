@@ -65,3 +65,14 @@ Empty
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+
+```java
+import java.util.Arrays;
+
+class Solution {
+    public double solution(int[] numbers) {
+        return Arrays.stream(numbers).average().orElse(0);
+    }
+}
+```
+스트림...뭔가 좋아보인다. 스트림 배울 때 유심히 봐야겠다.
