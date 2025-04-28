@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void hanoi(int a, int b, int n) { //a는 시작 기둥, b는 도착 기둥
+void hanoi(int a, int b, int n) { // a는 시작 기둥, b는 도착 기둥
 	if(n==1) {
 		cout<<a<<' '<<b<<"\n";
 		return;
 	}
-	hanoi(a, 6-a-b, n-1); //6-a-b는 시작기둥도 도착기둥도 아닌 기둥
+	hanoi(a, 6-a-b, n-1);
 	cout<<a<<' '<<b<<"\n";
 	hanoi(6-a-b, b, n-1);
 }
