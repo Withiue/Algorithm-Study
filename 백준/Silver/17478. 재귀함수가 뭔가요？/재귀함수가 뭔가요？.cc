@@ -8,7 +8,6 @@ void _bar(const char* str, int stk) {
 
 void func(int cnt) {
 	_bar("\"재귀함수가 뭔가요?\"\n", cnt);
-	// base condition
 	if(cnt==n) _bar("\"재귀함수는 자기 자신을 호출하는 함수라네\"\n", cnt);
 	else {
 		_bar("\"잘 들어보게. 옛날옛날 한 산 꼭대기에 이세상 모든 지식을 통달한 선인이 있었어.\n", cnt);
