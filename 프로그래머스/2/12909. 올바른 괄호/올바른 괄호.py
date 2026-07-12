@@ -1,15 +1,17 @@
-def solution(str):
-    stk = []
-    for s in str:
-        if s == '(':
-            stk.append('(')
+# stack을 사용해야 하는 괄호 문제
+# 괄호가 열렸으면 제대로 닫혀야 한다.
+
+
+def solution(s):
+    stk = 0
+    for c in s:
+        if c == '(':  # 여는 괄호면 stk += 1
+            stk += 1
         else:
-            # '('가 있을때만 pop, 아니면 return false
-            if len(stk) > 0:
-                stk.pop()
-            else:
+            if stk > 0:  # 닫는 괄호인데 이전에 열린 괄호 있으면 stk -=1
+                stk -= 1
+            else:  # 열린 괄호 없으면 False return
                 return False
-    if len(stk) == 0:
-        return True
-    else:
-        return False
+            
+    return False if stk else True  # stk에 남은 열린 괄호 있으면 False, 없으면 True 리턴
+    
