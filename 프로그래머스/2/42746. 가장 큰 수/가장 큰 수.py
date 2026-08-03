@@ -1,13 +1,15 @@
 def solution(numbers):
-    answer = ''
-    # 쿤자열로 바꾸기
-    numbers = list(map(str, numbers))
+    # numbers의 요소들을 str로 바꾸기
+    numbers = [str(n) for n in numbers]
     
-    # 각 number를 세 번 곱하고 비교해서 내림차순 정렬 (1,000 이하인걸 활용)
-    numbers.sort(key=lambda x: x * 3, reverse=True)
+    # numbers의 요소들을 네 번 반복해 내림차순 정렬하기 
+    # numbers의 원소는 0이상 1000이하, 모두 네 자리 수 이상으로 만들어 비교하기
+    numbers.sort(key=lambda x: x * 4, reverse=True)
     
-    # 정렬된 숫자 하나로 합치기
-    answer = answer.join(numbers)
+    # 정답이 0인 경우 0000 -> 이런걸 0으로 나타내기
+    answer = ''.join(numbers)
     
-    # 정답이 0인 경우
-    return str(int(answer))
+    if answer[0] == '0':
+        return '0'
+    
+    return answer
