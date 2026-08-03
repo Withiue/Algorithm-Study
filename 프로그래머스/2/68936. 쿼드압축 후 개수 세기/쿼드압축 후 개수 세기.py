@@ -1,41 +1,42 @@
-# 크기 몇인지 세기
-
-# 압축하기
-# 다 같나? -> 그러면 해당 수로 압축
-# 다 같지 않으면 4등분 해서 재귀함수 들어감
-# 한 칸만 남았을때는 그대로 리턴하기
-
-def recur(arr, x1, y1, size, answer):
-    first = arr[x1][y1]
-    
-    # 현재 구역이 모두 같은 숫자인가?
-    same = True
-    
-    for i in range(x1, x1 + size):
-        for j in range(y1, y1 + size):
-            if arr[i][j] != first:
-                same = False
-                break
-        
-        if not same:
-            break
-    
-    # 모두 같으면 하나로 압축
-    if same:
-        answer[first] += 1
-        return
-    
-    # 모두 같지 않으면 4등분
-    half = size // 2
-    
-    recur(arr, x1, y1, half, answer)  # 왼쪽 위
-    recur(arr, x1, y1 + half, half, answer)  # 오른쪽 위
-    recur(arr, x1 + half, y1, half, answer)  # 왼쪽 아래
-    recur(arr, x1 + half, y1 + half, half, answer)  # 오른쪽 아래
-
 def solution(arr):
-    answer = [0, 0]
+    answer = [0, 0]  # [0 개수, 1 개수]
     
-    recur(arr, 0, 0, len(arr), answer)
+    n = len(arr)
+    
+    # 압축 함수
+    def recur(n, x, y):  # 현재 길이, 좌상 시작 좌표
+        # 멈추는 조건 - 칸이 딱 하나면 그대로 return하기
+        if n == 1: 
+            if arr[x][y] == 0:
+                answer[0] += 1
+            else:
+                answer[1] += 1
+            return
+        
+        # 압축 조건 - 내부에 있는 모든 수가 같은 값이면 해당 수로 압축
+        isFalse = False
+        for i in range(n):
+            for j in range(n):
+                if arr[x][y] != arr[x+i][y+j]:
+                    isFalse = True
+                    break
+            if isFalse: break
+            
+        else:
+            if arr[x][y] == 0:
+                answer[0] += 1
+            else:
+                answer[1] += 1
+            return
+        
+        # 4분할로 재귀하기
+        half = n // 2
+        
+        recur(half, x, y)  # 좌상
+        recur(half, x + half, y)  # 우상
+        recur(half, x, y + half)  # 좌하
+        recur(half, x + half, y + half)  # 우하
+        
+    recur(n, 0, 0)
     
     return answer
