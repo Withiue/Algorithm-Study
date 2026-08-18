@@ -2,19 +2,20 @@ from collections import Counter
 
 def solution(want, number, discount):
     answer = 0
-
-    # 원하는 상품과 개수
-    want_dict = {}
-    for i in range(len(want)):
-        want_dict[want[i]] = number[i]
-
-    # 10일씩 확인
-    for i in range(len(discount) - 9):
-        # 현재 10일간 할인 상품 개수
-        current = Counter(discount[i:i + 10])
-
-        # 원하는 상품 구성이 정확히 맞으면 가입 가능
-        if current == Counter(want_dict):
+    
+    # want:number를 Counter로 만들기
+    want_counter = Counter(dict(zip(want, number)))
+    
+    # n 구하기 -> 이만큼 discount를 슬라이딩 윈도우 적용할것임
+    n = sum(number)
+    
+    # discount 순회하며 슬라이딩 윈도우
+    for i in range(len(discount) - n + 1):
+        
+        window = Counter(discount[i:i + n])
+        
+        # Counter 두 개 끼리 == 비교해서 종류와 개수가 같은지 확인
+        if window == want_counter:
             answer += 1
-
+    
     return answer
