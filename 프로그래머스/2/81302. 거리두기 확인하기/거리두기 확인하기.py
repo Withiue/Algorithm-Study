@@ -62,6 +62,12 @@ def solution(places):
                         # 빈 테이블이면 계속 탐색
                         visited[nx][ny] = True
                         Q.append((nx, ny, dist + 1))
+                    
+                    if not is_safe:
+                        break
+                
+                if not is_safe:
+                    break
         
         if is_safe:
             answer.append(1)
