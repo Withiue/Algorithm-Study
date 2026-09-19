@@ -1,22 +1,17 @@
 def solution(arr1, arr2):
     answer = []
-    n = len(arr2)  # == len(arr1[0])
     
-    # arr1 행 순회
-    for x1 in range(len(arr1)):
-        tmp_lst = []
-            
-        # arr2 열 순회
-        for y2 in range(len(arr2[0])):
-            
-            tmp_sum = 0
-            
-            # 행렬곱, k기준 동시 순회
-            for k in range(n):
-                tmp_sum += arr1[x1][k] * arr2[k][y2]
-            
-            tmp_lst.append(tmp_sum)
+    for r1 in range(len(arr1)):  # arr1의 각 행
+        row = []
         
-        answer.append(tmp_lst)
-
+        for c2 in range(len(arr2[0])):  # arr2의 각 열
+            total = 0
+            
+            for k in range(len(arr1[0])):
+                total += arr1[r1][k] * arr2[k][c2]
+                
+            row.append(total)
+        
+        answer.append(row)
+    
     return answer
