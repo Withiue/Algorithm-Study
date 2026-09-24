@@ -5,12 +5,12 @@ def solution(prices):
     Q = deque(prices)
     
     while Q:
-        cur_price = Q.popleft()
+        cur = Q.popleft()
         tmp = 0
         for q in Q:
-            tmp += 1
-            if cur_price > q:
+            tmp += 1  # 떨어지기 직전까지를 1초로 센다
+            if cur > q:
                 break
         answer.append(tmp)
-                      
+        
     return answer
