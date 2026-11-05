@@ -1,14 +1,16 @@
 def solution(array, commands):
     answer = []
-    for i, j, k in commands:
-        # 자르기
-        sliced_array = array[i-1:j]
-        print(sliced_array)
-        # 정렬하기
-        sliced_array.sort()
-        print(sliced_array)
-        # k번째 숫자
-        num = sliced_array[k-1]
-        print(num)
-        answer.append(num)
+    
+    for command in commands:
+        i, j, k = command
+        
+        # 1. 자르기
+        tmp = array[i-1:j]
+        
+        # 2. 정렬하기
+        tmp.sort()
+        
+        # 3. k번째 숫자 구하기, answer에 담기
+        answer.append(tmp[k-1])
+
     return answer
